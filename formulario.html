@@ -1,0 +1,99 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario de Datos Personales</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f4f4f4;
+    }
+    form {
+      background-color: white;
+      padding: 20px;
+      max-width: 400px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+    }
+    input[type="text"],
+    input[type="tel"],
+    input[type="email"],
+    input[type="password"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    input[type="submit"] {
+      margin-top: 20px;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <form action="gracias.html" method="get" onsubmit="return validarFormulario()">
+    <h2>Formulario de Registro</h2>
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" name="nombre" pattern="[A-Za-zÁÉÍÓÚÑáéíóúñ\s]+" title="Solo letras" required>
+
+    <label for="apellidoP">Apellido Paterno:</label>
+    <input type="text" id="apellidoP" name="apellidoP" pattern="[A-Za-zÁÉÍÓÚÑáéíóúñ\s]+" title="Solo letras" required>
+
+    <label for="apellidoM">Apellido Materno:</label>
+    <input type="text" id="apellidoM" name="apellidoM" pattern="[A-Za-zÁÉÍÓÚÑáéíóúñ\s]+" title="Solo letras" required>
+
+    <label for="correo">Correo electrónico:</label>
+    <input type="email" id="correo" name="correo" required>
+
+    <label for="password">Contraseña (máx. 8 caracteres):</label>
+    <input type="password" id="password" name="password" maxlength="8" required>
+
+    <label for="telefono">Número de Teléfono (10 dígitos):</label>
+    <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" title="Debe tener 10 dígitos" required>
+
+    <label for="domicilio">Domicilio:</label>
+    <input type="text" id="domicilio" name="domicilio" required>
+
+    <input type="submit" value="Enviar">
+  </form>
+
+  <script>
+    function validarFormulario() {
+      const correo = document.getElementById("correo").value;
+      const password = document.getElementById("password").value;
+
+      const regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+      if (!regexCorreo.test(correo)) {
+        alert("El correo no es válido. Ejemplo: usuario@gmail.com");
+        return false;
+      }
+
+      if (password.length > 8) {
+        alert("La contraseña debe tener máximo 8 caracteres.");
+        return false;
+      }
+
+      return true; // Todo bien
+    }
+  </script>
+
+</body>
+</html>
